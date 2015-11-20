@@ -1,11 +1,9 @@
 from __future__ import unicode_literals, absolute_import
 
 from django.contrib.auth.decorators import permission_required
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import render
 
-from wagtail.wagtailcore.models import Page
-
-from ..forms import SearchForm, StatementForm
+from ..forms import SearchForm
 from ..pagination import paginate
 from ..models import Poll
 
@@ -17,7 +15,7 @@ def index(request):
 
     paginator, page = paginate(
         request,
-        Poll.objects.order_by('-issue_date'),
+        Poll.objects.all(),
         per_page=8)
 
     return render(request, 'wagtailpolls/index.html', {

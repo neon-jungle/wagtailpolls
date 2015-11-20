@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.utils.text import slugify
 from django.db.models.query import QuerySet
 from django.utils import timezone
+from django.utils.encoding import python_2_unicode_compatible
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailsearch.backends import get_search_backend
 
@@ -20,12 +21,12 @@ class PollQuerySet(QuerySet):
         return search_backend.search(query_string, self)
 
 
+@python_2_unicode_compatible
 class Poll(models.Model):
-    issue_date = models.DateTimeField('Issue date', default=timezone.now)
-    last_updated = models.DateTimeField(auto_now=True)
+    title = models.CharField(max_length=128)
 
     panels = [
-        FieldPanel('issue_date'),
+        FieldPanel('title'),
     ]
 
     objects = PollQuerySet.as_manager()
@@ -43,6 +44,9 @@ class Poll(models.Model):
         return render(request, self.get_template(request), {
             'poll': self,
         })
+
+    def __str__(self):
+        return self.title
 
 # Need to import this down here to prevent circular imports :(
 from .views import frontend

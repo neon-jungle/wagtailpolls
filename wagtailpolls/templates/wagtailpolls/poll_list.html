@@ -1,0 +1,61 @@
+{% load i18n %}
+{% load wagtailpolls_tags %}
+<table class="listing full-width">
+			<colgroup>
+			<thead><tr class="table-headers">
+				<th class="title">Name</th>
+				<th class='issued_on'>Issued on</th>
+				<th class="last_updated">Last Updated</th>
+				<th class="date">poll No.</th>
+			</tr></thead>
+			<tbody>
+			{% for poll in page %}
+				<tr>
+					<td class="title">
+						<h2>
+							<a href="{% url 'wagtailpolls_edit' poll_pk=poll.pk %}">
+								{{poll}}
+							</a>
+						</h2>
+						<ul class="actions">
+							<li><a href="{% url 'wagtailpolls_edit' poll_pk=poll.pk %}" class="button button-small">{% trans 'Edit' %}</a></li>
+							<li><a href="{% url 'wagtailpolls_copy' poll_pk=poll.pk %}" class="button button-small button-secondary yes">{% trans 'Copy' %}</a></li>
+							<li><a href="{% url 'wagtailpolls_delete' poll_pk=poll.pk %}" class="button button-small button-secondary no">{% trans 'Delete' %}</a></li>
+						</ul>
+					</td>
+					<td class='issued'> {{ poll.issue_date|date:"d M Y H:i"}} </td>
+					<td class='updated'>
+						{% if poll.last_updated %}
+						<div class="human-readable-date" title="{{ poll.last_updated|date:"d M Y H:i" }}">
+						{{ poll.last_updated|timesince }} ago</div>{% endif %}
+					</td>
+					<td class="date">
+						{{ poll.id }}
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+</table>
+<div class="pagination">
+	<p>Page {{page.number}} of {{paginator.num_pages}}</p>
+	<ul>
+		{% if page.has_previous %}
+		<li class="prev">
+
+
+					<a href="?{% querystring page=page.previous_page_number %}" class="icon icon-arrow-left">Previous</a>
+
+
+		</li>
+		{% endif %}
+		{% if page.has_next %}
+		<li class="next">
+
+
+					<a href="?{% querystring page=page.next_page_number %}" class="icon icon-arrow-right-after">Next</a>
+
+
+		</li>
+		{% endif %}
+	</ul>
+</div>
