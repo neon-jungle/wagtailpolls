@@ -8,8 +8,12 @@ from django.utils.text import slugify
 from django.db.models.query import QuerySet
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.wagtailsearch.backends import get_search_backend
+from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
+from wagtail.wagtailsearch import index
+
 
 
 class PollQuerySet(QuerySet):
@@ -22,12 +26,28 @@ class PollQuerySet(QuerySet):
 
 
 @python_2_unicode_compatible
-class Poll(models.Model):
+class Question(models.Model):
+    poll = ParentalKey('Poll', related_name='questions')
+    question = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.question
+
+
+@python_2_unicode_compatible
+class Poll(ClusterableModel, models.Model, index.Indexed):
     title = models.CharField(max_length=128)
+    date_created = models.DateTimeField(default=timezone.now)
 
     panels = [
         FieldPanel('title'),
+        InlinePanel('questions', label='Questions', min_num=1)
     ]
+
+    search_fields = (
+        index.SearchField('title', partial_match=True, boost=5),
+        index.SearchField('id', boost=10),
+    )
 
     objects = PollQuerySet.as_manager()
 

@@ -27,8 +27,8 @@ def index(request):
 
 
 @permission_required('wagtailadmin.access_admin')  # further permissions are enforced within the view
-def search(request, pk):
-    poll_list = Poll.objects.all().order_by('-issue_date')
+def search(request):
+    poll_list = Poll.objects.all()
     search_form = SearchForm(request.GET or None)
 
     if search_form.is_valid():
@@ -38,7 +38,7 @@ def search(request, pk):
     else:
         paginator, page = paginate(
             request,
-            Poll.objects.order_by('-issue_date'),
+            Poll.objects.all(),
             per_page=8)
 
     paginator, page = paginate(

@@ -21,14 +21,12 @@ def get_poll_edit_handler(Poll):
 def create(request):
     from ..models import Poll
 
-    poll = Poll.objects.create(pk=None)
-
+    poll = Poll()
     EditHandler = get_poll_edit_handler(Poll)
     EditForm = EditHandler.get_form_class(Poll)
 
     if request.method == 'POST':
-
-        form = EditForm(request.POST, request.FILES, instance=Poll)
+        form = EditForm(request.POST, request.FILES, instance=poll)
         if form.is_valid():
             poll = form.save()
             poll.save()

@@ -1,13 +1,13 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.conf.urls import url
-from .views import chooser, editor
+from .views import chooser, editor, results
 
 
 urlpatterns = [
     url(r'^$', chooser.index,
         name='wagtailpolls_index'),
-    url(r'^/search/$', chooser.search,
+    url(r'^search/$', chooser.search,
         name='wagtailpolls_search'),
     url(r'^create/$', editor.create,
         name='wagtailpolls_create'),
@@ -17,4 +17,6 @@ urlpatterns = [
         name='wagtailpolls_delete'),
     url(r'^copy/(?P<poll_pk>.*)/$', editor.copy,
         name='wagtailpolls_copy'),
+    url(r'^results/(?P<poll_pk>.*)/$', results.results,
+        name='wagtailpolls_results'),
 ]

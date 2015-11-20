@@ -1,0 +1,19 @@
+{% extends "wagtailadmin/base.html" %}
+{% load i18n %}
+{% block titletag %}{% trans "Polls: Viewing Results" %}{% endblock %}
+{% block bodyclass %}menu-poll{% endblock %}
+
+{% block content %}
+
+<header class="nice-padding">
+	<div class="row row-flush">
+			<div class="left col9">
+				<div class='col'>
+					<h1 class="icon icon-edit">{% blocktrans %}{{poll}}{% endblocktrans %} </h1>
+				</div>
+			</div>
+
+	</div>
+</header>
+<h1> Data goes here :) </h1>
+{% endblock %}

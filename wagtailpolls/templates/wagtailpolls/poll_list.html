@@ -4,9 +4,8 @@
 			<colgroup>
 			<thead><tr class="table-headers">
 				<th class="title">Name</th>
-				<th class='issued_on'>Issued on</th>
-				<th class="last_updated">Last Updated</th>
-				<th class="date">poll No.</th>
+				<th class='created_on'>Date created</th>
+				<th class='results'></th>
 			</tr></thead>
 			<tbody>
 			{% for poll in page %}
@@ -23,14 +22,13 @@
 							<li><a href="{% url 'wagtailpolls_delete' poll_pk=poll.pk %}" class="button button-small button-secondary no">{% trans 'Delete' %}</a></li>
 						</ul>
 					</td>
-					<td class='issued'> {{ poll.issue_date|date:"d M Y H:i"}} </td>
-					<td class='updated'>
-						{% if poll.last_updated %}
-						<div class="human-readable-date" title="{{ poll.last_updated|date:"d M Y H:i" }}">
-						{{ poll.last_updated|timesince }} ago</div>{% endif %}
+					<td class='created_on'>
+						{% if poll.date_created %}
+						<div class="human-readable-date" title="{{ poll.date_created|date:"d M Y H:i" }}">
+						{{ poll.date_created|timesince }} ago</div>{% endif %}
 					</td>
-					<td class="date">
-						{{ poll.id }}
+					<td class='children'>
+						<a href="{% url 'wagtailpolls_results' poll_pk=poll.pk %}" class="icon icon-arrow-right" title="Check out the poll results for '{{poll}}'"><b>Results</b></a>
 					</td>
 				</tr>
 			{% endfor %}

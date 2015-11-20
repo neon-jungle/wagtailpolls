@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+import modelcluster.fields
 import django.utils.timezone
 
 
@@ -14,10 +15,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Poll',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
-                ('email', models.EmailField(blank=True, max_length=254)),
-                ('issue_date', models.DateTimeField(default=django.utils.timezone.now, verbose_name='Issue date')),
-                ('last_updated', models.DateTimeField(auto_now=True)),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('title', models.CharField(max_length=128)),
+                ('date_created', models.DateTimeField(default=django.utils.timezone.now)),
+            ],
+            options={
+                'abstract': False,
+            },
+        ),
+        migrations.CreateModel(
+            name='Question',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('question', models.CharField(max_length=128)),
+                ('poll', modelcluster.fields.ParentalKey(to='wagtailpolls.Poll', related_name='questions')),
             ],
         ),
     ]

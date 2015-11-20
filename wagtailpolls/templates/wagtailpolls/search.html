@@ -1,0 +1,32 @@
+{% extends "wagtailadmin/base.html" %}
+{% load i18n %}
+{% block titletag %}{% trans "Polls" %}{% endblock %}
+{% block bodyclass %}menu-poll{% endblock %}
+
+{% block content %}
+
+<header class="nice-padding" style='padding-bottom:3em;'>
+	<div class="row row-flush">
+			<div class="left col9">
+				<div class='col'>
+				<h1 class="icon icon-edit">{% blocktrans %}Polls{% endblocktrans %} </h1>
+				</div>
+				<form class='col search-form' action='{% url 'wagtailpolls_search' %}' method="GET">
+				{{search_form}}
+				<li class="submit visuallyhidden"><input type="submit" value="Search" class="button"></li>
+				</form>
+			</div>
+
+		<div class='right col3'>
+			<div class="addbutton">
+				<a href="{% url 'wagtailpolls_create' %}" class="button bicolor icon icon-plus">{% blocktrans %}Add poll{% endblocktrans %}</a>
+			</div>
+		</div>
+	</div>
+</header>
+	{% if poll_list.exists %}
+	{% include 'wagtailpolls/poll_list.html' %}
+	{% else %}
+        <div class="nice-padding">Your search results didn't return anything!</div>
+	{% endif %}
+{% endblock %}
