@@ -1,0 +1,31 @@
+{% extends "wagtailadmin/base.html" %}
+{% load i18n %}
+{% block titletag %}{% blocktrans %}New poll{% endblocktrans %}{% endblock %}
+{% block bodyclass %}menu-poll{% endblock %}
+{% block content %}
+	{% trans "New" as new_str %}
+	{% trans "Poll" as pollpost_str %}
+	{% include "wagtailadmin/shared/header.html" with title=new_str subtitle=pollpost_str icon="group" %}
+
+	<form action="{% url 'wagtailpolls_create' %}" method="POST">
+		{% csrf_token %}
+		{{ edit_handler.render_form_content }}
+
+<footer>
+			<ul>
+				<li class="actions">
+					<div class="dropdown dropup dropdown-button match-width">
+							<input type="submit" value="{% trans 'Save' %}" name='{{send_button_name}}' />
+					</div>
+				</li>
+			</ul>
+		</footer>
+	</form>
+{% endblock %}
+
+{% block extra_css %}
+	{% include "wagtailadmin/pages/_editor_css.html" %}
+{% endblock %}
+{% block extra_js %}
+	{% include "wagtailadmin/pages/_editor_js.html" %}
+{% endblock %}
