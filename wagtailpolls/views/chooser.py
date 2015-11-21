@@ -6,10 +6,10 @@ from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render
 from django.utils.translation import ugettext as _
 from wagtail.wagtailadmin.modal_workflow import render_modal_workflow
+from wagtail.wagtailadmin.forms import SearchForm as AdminSearchForm
 
 from ..forms import SearchForm
 from django.utils.six import text_type
-from wagtail.wagtailadmin.forms import SearchForm as PollSearchForm
 from django.shortcuts import render, get_object_or_404
 from ..pagination import paginate
 from ..models import Poll
@@ -69,7 +69,8 @@ def choose(request):
     is_searching = False
     search_query = None
     if 'q' in request.GET:
-        search_form = SearchForm(request.GET, placeholder=_("Search %(snippet_type_name)s") % {
+        print('got here!!')
+        search_form = AdminSearchForm(request.GET, placeholder=_("Search %(snippet_type_name)s") % {
             'snippet_type_name': 'Polls'
         })
 
@@ -81,18 +82,14 @@ def choose(request):
             is_searching = True
 
     else:
-        search_form = PollSearchForm(placeholder=_("Search %(snippet_type_name)s") % {
-            'snippet_type_name': 'Polls'
-        })
+        search_form = AdminSearchForm()
 
     # Pagination
     paginator, paginated_items = paginate(request, items, per_page=25)
 
     # If paginating or searching, render "results.html"
     if request.GET.get('results', None) == 'true':
-        return render(request, "wagtailsnippets/chooser/results.html", {
-            #'content_type': content_type,
-            'snippet_type_name': "Poll",
+        return render(request, "wagtailpolls/search_results.html", {
             'items': paginated_items,
             'query_string': search_query,
             'is_searching': is_searching,
@@ -102,7 +99,6 @@ def choose(request):
         request,
         'wagtailpolls/choose.html', 'wagtailpolls/choose.js',
         {
-            #'content_type': content_type,
             'snippet_type_name': 'Poll',
             'items': paginated_items,
             'is_searchable': True,

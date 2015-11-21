@@ -15,7 +15,7 @@
                     {% if choosing %}
                         <h2><a class="snippet-choice" href="{% url 'wagtailpolls_chosen' snippet.id %}">{{ snippet }}</a></h2>
                     {% else %}
-                        <h2><a href="{% url 'wagtailsnippets:edit' content_type.app_label content_type.model snippet.id %}">{{ snippet }}</a></h2>
+                        <h2><a href="{% url 'wagtailpolls_choose' snippet.id %}">{{ snippet }}</a></h2>
                     {% endif %}
                 </td>
             </tr>

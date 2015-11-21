@@ -3,7 +3,7 @@
 {% block chooser_class %}poll-chooser{% endblock %}
 
 {% block chosen_state_view %}
-    <span class="title">{{ item }}</span> <h1> Here </h1>
+    <span class="title">{{ item }}</span>
 {% endblock %}
 
-{% block edit_chosen_item_url %}{% url 'wagtailpolls_choose' %}<h1> here</h1>{% endblock %}
+{% block edit_chosen_item_url %}{% url 'wagtailpolls_edit' poll_pk=item.pk %}{% endblock %}

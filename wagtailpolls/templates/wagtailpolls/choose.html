@@ -1,11 +1,11 @@
 {% load i18n %}
-{% trans "Choose" as choose_str %}
+{% trans "Choose a" as choose_str %}
 {% include "wagtailadmin/shared/header.html" with title=choose_str subtitle=snippet_type_name icon="group" %}
 
 <div class="nice-padding">
 	{# Need to keep the form in the HTML, even if the snippet is not searchable #}
 	{# This is to allow pagination links to be generated from the form action URL #}
-	<form class="snippet-search search-bar" action="{% url 'wagtailpolls_chooser_search' %}" method="GET">
+	<form class="snippet-search search-bar" action="{% url 'wagtailpolls_choose' %}" method="GET">
 		{% if is_searchable %}
 			<ul class="fields">
 				{% for field in search_form %}
