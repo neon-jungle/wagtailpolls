@@ -5,6 +5,12 @@ from .views import chooser, editor, results
 
 
 urlpatterns = [
+    # Choosers
+    url(r'^choose/$', chooser.choose,
+        name='wagtailpolls_choose'),
+    url(r'^choose/(\w+)/(\w+)/$', chooser.choose, name='wagtailpolls_choose_specific'),
+    url(r'^choose/(\d+)/$', chooser.chosen, name='wagtailpolls_chosen'),
+    # General Urls
     url(r'^$', chooser.index,
         name='wagtailpolls_index'),
     url(r'^search/$', chooser.search,

@@ -1,0 +1,9 @@
+{% extends "wagtailadmin/widgets/chooser.html" %}
+
+{% block chooser_class %}poll-chooser{% endblock %}
+
+{% block chosen_state_view %}
+    <span class="title">{{ item }}</span> <h1> Here </h1>
+{% endblock %}
+
+{% block edit_chosen_item_url %}{% url 'wagtailpolls_choose' %}<h1> here</h1>{% endblock %}

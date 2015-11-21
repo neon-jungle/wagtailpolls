@@ -15,7 +15,6 @@ from modelcluster.models import ClusterableModel
 from wagtail.wagtailsearch import index
 
 
-
 class PollQuerySet(QuerySet):
     def search(self, query_string, fields=None, backend='default'):
         """
@@ -38,6 +37,7 @@ class Question(models.Model):
 class Poll(ClusterableModel, models.Model, index.Indexed):
     title = models.CharField(max_length=128)
     date_created = models.DateTimeField(default=timezone.now)
+    template = 'polls/poll.html'
 
     panels = [
         FieldPanel('title'),
@@ -64,6 +64,23 @@ class Poll(ClusterableModel, models.Model, index.Indexed):
         return render(request, self.get_template(request), {
             'poll': self,
         })
+
+    def __str__(self):
+        return self.title
+
+
+@python_2_unicode_compatible
+class Vote(models.Model):
+    choice = models.ForeignKey(Question)
+    ip = models.GenericIPAddressField()
+
+    class Meta:
+        unique_together = ('ip', 'choice')
+
+    panels = [
+        FieldPanel('title'),
+        InlinePanel('questions', label='Questions', min_num=1)
+    ]
 
     def __str__(self):
         return self.title

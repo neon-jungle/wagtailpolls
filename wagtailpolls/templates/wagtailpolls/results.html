@@ -1,19 +1,24 @@
-{% extends "wagtailadmin/base.html" %}
 {% load i18n %}
-{% block titletag %}{% trans "Polls: Viewing Results" %}{% endblock %}
-{% block bodyclass %}menu-poll{% endblock %}
-
-{% block content %}
-
-<header class="nice-padding">
-	<div class="row row-flush">
-			<div class="left col9">
-				<div class='col'>
-					<h1 class="icon icon-edit">{% blocktrans %}{{poll}}{% endblocktrans %} </h1>
-				</div>
-			</div>
-
-	</div>
-</header>
-<h1> Data goes here :) </h1>
-{% endblock %}
+<table class="listing">
+    <col />
+    <col  />
+    <col width="16%" />
+    <thead>
+        <tr class="table-headers">
+            <th>{% trans "Title" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for snippet in items %}
+            <tr>
+                <td class="title">
+                    {% if choosing %}
+                        <h2><a class="snippet-choice" href="{% url 'wagtailpolls_chosen' snippet.id %}">{{ snippet }}</a></h2>
+                    {% else %}
+                        <h2><a href="{% url 'wagtailsnippets:edit' content_type.app_label content_type.model snippet.id %}">{{ snippet }}</a></h2>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
