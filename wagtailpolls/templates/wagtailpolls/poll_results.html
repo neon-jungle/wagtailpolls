@@ -9,13 +9,30 @@
 	<div class="row row-flush">
 			<div class="left col9">
 				<div class='col'>
-					<h1 class="icon icon-edit">{% blocktrans %}{{poll}}{% endblocktrans %} </h1>
+					<h1 class="icon icon-edit">{% blocktrans %}{{poll}} - Total Votes {{total_votes}}{% endblocktrans %} </h1>
 				</div>
 			</div>
 
 	</div>
 </header>
 <div class='nice-padding'>
-	<h1> Data here </h1>
+<table class="listing">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Votes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	{% for question in poll.questions.all %}
+                    <tr>
+                        <td class="title">
+                            <h2>{{question}}</h2>
+                        </td>
+                        <td>{{question.votes.all.count}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 </div>
 {% endblock %}
