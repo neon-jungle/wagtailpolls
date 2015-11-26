@@ -1,4 +1,5 @@
 from django import template
+from django.core.urlresolvers import reverse
 
 register = template.Library()
 
@@ -13,3 +14,8 @@ def querystring(context, **kwargs):
             get[key] = val
 
     return get.urlencode()
+
+
+@register.simple_tag(takes_context=True)
+def vote(context, poll):
+    return reverse('wagtailpolls_vote', kwargs={'poll_pk': poll.pk})

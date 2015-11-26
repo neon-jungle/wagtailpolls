@@ -1,10 +1,12 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.conf.urls import url
-from .views import chooser, editor, results
+from .views import chooser, editor, results, vote
 
 
 urlpatterns = [
+    # Actions
+    url(r'^vote/(?P<poll_pk>.*)/$', vote.vote, name='wagtailpolls_vote'),
     # Choosers
     url(r'^choose/$', chooser.choose,
         name='wagtailpolls_choose'),

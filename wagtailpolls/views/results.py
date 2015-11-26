@@ -8,6 +8,6 @@ def results(request, poll_pk):
 
     poll = get_object_or_404(Poll, pk=poll_pk)
 
-    return render(request, 'wagtailpolls/results.html', {
+    return render(request, 'wagtailpolls/poll_results.html', {
         'poll': poll,
     })

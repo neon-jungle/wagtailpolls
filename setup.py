@@ -26,6 +26,7 @@ setup(
 
     install_requires=[
         'wagtail>=1.0b2',
+        'django-ipware==1.1.2',
     ],
     zip_safe=False,
     license='BSD License',
