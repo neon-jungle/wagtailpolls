@@ -17,7 +17,7 @@ def vote_data(poll):
             for question in questions
         }
     }
-    return JsonResponse(vote_data)
+    return vote_data
 
 
 @permission_required('wagtailadmin.access_admin')
@@ -28,13 +28,21 @@ def vote(request, poll_pk):
 
     if 'polls' in request.session:
         if poll in request.session['polls']:
-            return vote_data(poll)
+            return JsonResponse(vote_data(poll))
     else:
-        request.session['polls'] = set()
+        request.session['polls'] = []
 
     if form.is_valid():
         form.save()
-        request.session['polls'].add(poll)
-        return vote_data(poll)
+        request.session['polls'].append(poll)
+        return JsonResponse(vote_data(poll))
 
+    else:
+        data = vote_data(poll)
+        data.update({
+            'form_error': form.errors
+            })
+        return JsonResponse(data)
+
+    print(form.errors)
     return HttpResponse("<h1> 403 Forbidden</h1>", status=403)
