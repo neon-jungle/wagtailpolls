@@ -17,7 +17,8 @@ It works with Wagtail 1.0b2 and upwards.
 Using
 =====
 
-Add ``wagtailpolls`` to your ``INSTALLED_APPS`` and include the URL ``url(r'^results/(?P<poll_pk>.*)/$', results.results, name='wagtailpolls_results')`` in your ``urls.py``.
+Add ``wagtailpolls`` to your ``INSTALLED_APPS``, add the line ``from wagtailpolls.views import vote
+`` and include the URL ``url(r'^vote/(?P<poll_pk>.*)/$', vote.vote, name='wagtailpolls_vote')`` in your ``urls.py``.
 
 Define a foreign key referring to ``wagtailpolls.Poll`` and use the ``PollChooserPanel``:
 
@@ -42,4 +43,7 @@ Define a foreign key referring to ``wagtailpolls.Poll`` and use the ``PollChoose
         ]
 
 
+Settings
+========
 
+The following settings can be set in your ``settings.py`` file.
