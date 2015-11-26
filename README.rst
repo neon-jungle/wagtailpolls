@@ -22,6 +22,7 @@ Add ``wagtailpolls`` to your ``INSTALLED_APPS`` and include the URL ``url(r'^res
 Define a foreign key referring to ``wagtailpolls.Poll`` and use the ``PollChooserPanel``:
 
 .. code-block:: python
+
     from django.db import models
     from wagtailpolls.edit_handlers import PollChooserPanel
     from wagtail.wagtailadmin.edit_handlers import FieldPanel
