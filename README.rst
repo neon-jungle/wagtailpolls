@@ -17,7 +17,7 @@ It works with Wagtail 1.0b2 and upwards.
 Using
 =====
 
-Add ``wagtailpolls`` to your ``INSTALLED_APPS``, add the line ``from wagtailpolls.views import vote`` and include the URL ``url(r'^vote/(?P<poll_pk>.*)/$', vote.vote, name='wagtailpolls_vote')`` in your ``urls.py``.
+Add ``wagtailpolls`` to your ``INSTALLED_APPS``, add the line ``from wagtailpolls.views import vote`` to your ``urls.py`` and include the URL ``url(r'^vote/(?P<poll_pk>.*)/$', vote.vote, name='wagtailpolls_vote')``.
 
 Define a foreign key referring to ``wagtailpolls.Poll`` and use the ``PollChooserPanel``:
 
