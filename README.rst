@@ -17,8 +17,28 @@ It works with Wagtail 1.0b2 and upwards.
 Using
 =====
 
-Create poll models for your application that inherit from the relevant ``wagtailpolls`` models:
+Add ``wagtailpolls`` to your ``INSTALLED_APPS`` and include the URL ``url(r'^results/(?P<poll_pk>.*)/$', results.results, name='wagtailpolls_results')`` in your ``urls.py``.
+
+Define a foreign key referring to ``wagtailpolls.Poll`` and use the ``PollChooserPanel``:
 
 .. code-block:: python
+    from django.db import models
+    from wagtailpolls.edit_handlers import PollChooserPanel
+    from wagtail.wagtailadmin.edit_handlers import FieldPanel
+
+    class Content(Page):
+        body = models.TextField()
+        poll = models.ForeignKey(
+            'wagtailpolls.Poll',
+            null=True,
+            blank=True,
+            on_delete=models.SET_NULL
+        )
+
+        content_panels = [
+            FieldPanel('body', classname="full"),
+            PollChooserPanel('poll'),
+        ]
+
 
 
