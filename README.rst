@@ -46,4 +46,5 @@ Settings
 ========
 
 The following settings need to be set in your ``settings.py`` file.
+
 ``VOTE_COOLDOWN`` `This to be an integer representing minutes`

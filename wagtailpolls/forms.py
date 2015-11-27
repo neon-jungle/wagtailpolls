@@ -36,7 +36,7 @@ class VoteForm(forms.ModelForm):
         if not self.ip:
             self.add_error(None, 'Sorry, we were not able to obtain your ip address')
         if recent_vote is not None:
-            if recent_vote.time - timezone.now() < datetime.timedelta(minutes=settings.VOTE_COOLDOWN):
+            if timezone.now() - recent_vote.time < datetime.timedelta(minutes=settings.VOTE_COOLDOWN):
                 self.add_error(None, 'Sorry, you cannot vote twice in %s minutes' % (settings.VOTE_COOLDOWN))
 
     def save(self, commit=True):

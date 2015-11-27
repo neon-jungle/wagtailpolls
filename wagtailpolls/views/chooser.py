@@ -69,7 +69,6 @@ def choose(request):
     is_searching = False
     search_query = None
     if 'q' in request.GET:
-        print('got here!!')
         search_form = AdminSearchForm(request.GET, placeholder=_("Search %(snippet_type_name)s") % {
             'snippet_type_name': 'Polls'
         })
