@@ -27,14 +27,15 @@ def vote(request, poll_pk):
     form = VoteForm(data=request.POST, poll=poll, request=request)
 
     if 'polls' in request.session:
-        if poll in request.session['polls']:
+        if poll.pk in request.session['polls']:
             return JsonResponse(vote_data(poll))
     else:
         request.session['polls'] = []
 
     if form.is_valid():
         form.save()
-        request.session['polls'].append(poll)
+        request.session['polls'].append(poll.pk)
+        request.session.modified = True
         return JsonResponse(vote_data(poll))
 
     else:

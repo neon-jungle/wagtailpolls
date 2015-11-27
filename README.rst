@@ -42,9 +42,53 @@ Define a foreign key referring to ``wagtailpolls.Poll`` and use the ``PollChoose
         ]
 
 
+Then, in your editor, ensure that you have added some polls in the polls section in wagtail admin. You will be able to select a poll from there accessable in the template as you would expect.
+
+Templating & Display
+====================
+There are many ways in which you may want to display your poll. ``wagtailpolls`` comes with a template tag to assist with this, as well as certain attributes accesible via templating to render each question as a form. here is an example using all of the tools provided:
+
+.. code-block::
+
+    {% extends "layouts/page.html" %}
+    {% load wagtailpolls_tags %}
+    {% block content %}
+    <h1>{{ self.title }}</h1>
+    <br>
+    <form class='poll' method='POST' action='{% vote self.poll %}'>
+    {% csrf_token %}
+    {{self.poll.form}}
+    <br><br>
+        <input type="submit" value="Vote">
+    </form>
+    {% endblock %}
+
+As shown, the ``{% vote %}`` template tag will need to be passed a poll instance to function correctly. You will also need to ``{% load wagtailpolls_tags %}`` at the top of the file where this template tag is used.
+The poll can be rendered with all questions using ``.form`` at the end. ``.form_as_ul`` and all other form types will also work.
+
+Voting
+======
+When a vote has been submitted, the server will return a ``JsonResponse`` something like:
+
+.. code-block:: json
+
+    {"total_votes": 11, "total_questions": 3, "poll": "Test Poll", "votes": {"Nah": 10, "Yeah": 1, "Maybe": 0}}
+
+With javascript, this data can be used to create a frontend for your poll to your own liking.
+
+The voting form also performs some validation. If the voting form is unable to obtain your IP it will return something like:
+
+.. code-block:: json
+
+    {"poll": "Test Poll", "total_questions": 3, "total_votes": 11, "votes": {"Yeah": 1, "Maybe": 0, "Nah": 10}, "form_error": {"__all__": ["Sorry, we were not able to obtain your ip address"]}}
+
+There is also a ``POLL_COOLDOWN`` which is set in your settings. This will only allow users on the same IP to vote at an interval of your choosing. If this is caught, the error will be present in the ``JsonResponse`` much like the error above.
+
+Additionally, information will be added to the django session (basically cookies will be set) that will help make sure devices are not able to vote twice. When a vote is rejected due to this reason, the vote simply won't register with no error being returned in the ``JsonResponse``.
+
 Settings
 ========
 
-The following settings need to be set in your ``settings.py`` file.
+The following settings **need** to be set in your ``settings.py`` file.
 
-``VOTE_COOLDOWN`` `This to be an integer representing minutes`
+``VOTE_COOLDOWN`` `This is to be an integer representing minutes`
