@@ -44,5 +44,4 @@ def vote(request, poll_pk):
             })
         return JsonResponse(data)
 
-    print(form.errors)
     return HttpResponse("<h1> 403 Forbidden</h1>", status=403)
