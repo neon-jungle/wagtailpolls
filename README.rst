@@ -45,4 +45,5 @@ Define a foreign key referring to ``wagtailpolls.Poll`` and use the ``PollChoose
 Settings
 ========
 
-The following settings can be set in your ``settings.py`` file.
+The following settings need to be set in your ``settings.py`` file.
+``VOTE_COOLDOWN`` `This to be an integer representing minutes`
