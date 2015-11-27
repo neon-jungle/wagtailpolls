@@ -46,9 +46,9 @@ Then, in your editor, ensure that you have added some polls in the polls section
 
 Templating & Display
 ====================
-There are many ways in which you may want to display your poll. ``wagtailpolls`` comes with a template tag to assist with this, as well as certain attributes accesible via templating to render each question as a form. here is an example using all of the tools provided:
+There are many ways in which you may want to display your poll. ``wagtailpolls`` comes with a template tag to assist with this, as well as certain attributes accesible via templating to render each question as a form. Here is an example using all of the tools provided:
 
-.. code-block::
+.. code-block:: html
 
     {% extends "layouts/page.html" %}
     {% load wagtailpolls_tags %}
