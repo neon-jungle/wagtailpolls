@@ -2,8 +2,7 @@
 wagtailpolls
 ===============
 
-A plugin for Wagtail that provides polling functionality
-`Documentation on ReadTheDocs <https://wagtailpolls.readthedocs.org/en/latest/>`_
+A plugin for Wagtail that provides polling functionality.
 
 Installing
 ==========
@@ -55,16 +54,22 @@ There are many ways in which you may want to display your poll. ``wagtailpolls``
     {% block content %}
     <h1>{{ self.title }}</h1>
     <br>
+    {% if self.poll %}
     <form class='poll' method='POST' action='{% vote self.poll %}'>
     {% csrf_token %}
     {{self.poll.form}}
     <br><br>
         <input type="submit" value="Vote">
     </form>
+    {% else %}
+        No polls added to this page yet!
+    {% endif %}
     {% endblock %}
 
 As shown, the ``{% vote %}`` template tag will need to be passed a poll instance to function correctly. You will also need to ``{% load wagtailpolls_tags %}`` at the top of the file where this template tag is used.
 The poll can be rendered with all questions using ``.form`` at the end. ``.form_as_ul`` and all other form types will also work.
+
+If you do select a poll for a page, no fields will display on the form and, upon voting, a message stating that there is no poll to vote on will be displayed.
 
 Voting
 ======
