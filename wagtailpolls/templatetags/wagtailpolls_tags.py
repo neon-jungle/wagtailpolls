@@ -18,4 +18,6 @@ def querystring(context, **kwargs):
 
 @register.simple_tag(takes_context=True)
 def vote(context, poll):
+    if poll is None:
+        return reverse('wagtailpolls_vote', kwargs={'poll_pk': None})
     return reverse('wagtailpolls_vote', kwargs={'poll_pk': poll.pk})

@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import permission_required
-from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, JsonResponse
-from ..models import Poll, Vote
+from django.shortcuts import get_object_or_404
+
 from ..forms import VoteForm
+from ..models import Poll, Vote
 
 
 def vote_data(poll):
@@ -22,6 +23,12 @@ def vote_data(poll):
 
 @permission_required('wagtailadmin.access_admin')
 def vote(request, poll_pk):
+    try:
+        int(poll_pk)
+
+    except ValueError:
+        return HttpResponse("<h1>Oops, there is no poll to vote on!</h1>", status=500)
+
     poll = get_object_or_404(Poll, pk=poll_pk)
 
     form = VoteForm(data=request.POST, poll=poll, request=request)
