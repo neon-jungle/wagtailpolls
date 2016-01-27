@@ -1,19 +1,18 @@
-from __future__ import unicode_literals, absolute_import
+from __future__ import absolute_import, unicode_literals
 
 import json
 
 from django.contrib.auth.decorators import permission_required
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from django.utils.six import text_type
 from django.utils.translation import ugettext as _
-from wagtail.wagtailadmin.modal_workflow import render_modal_workflow
 from wagtail.wagtailadmin.forms import SearchForm as AdminSearchForm
+from wagtail.wagtailadmin.modal_workflow import render_modal_workflow
+from wagtail.wagtailsearch.backends import get_search_backend
 
 from ..forms import SearchForm
-from django.utils.six import text_type
-from django.shortcuts import render, get_object_or_404
-from ..pagination import paginate
 from ..models import Poll
-from wagtail.wagtailsearch.backends import get_search_backend
+from ..pagination import paginate
 
 
 @permission_required('wagtailadmin.access_admin')  # further permissions are enforced within the view
