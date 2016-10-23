@@ -2,3 +2,4 @@ include LICENSE
 include README.rst
 
 recursive-include wagtailpolls/templates *
+recursive-include wagtailpolls/static *
