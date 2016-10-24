@@ -12,6 +12,17 @@ msgstr ""
 "Last-Translator: François GUÉRIN <fguerin@ville-tourcoing.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
+
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-24 15:50+1100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,6 +49,27 @@ msgstr "Choisir un"
 #: templates/wagtailpolls/choose.html:14
 msgid "Search"
 msgstr "Rechercher"
+
+#: forms.py:41
+msgid "Sorry, we were not able to obtain your ip address"
+msgstr ""
+
+#: forms.py:44
+#, python-format
+msgid "Sorry, you cannot vote twice in %s minutes"
+msgstr ""
+
+#: models.py:53
+msgid "Questions"
+msgstr ""
+
+#: templates/wagtailpolls/choose.html:2
+msgid "Choose a"
+msgstr ""
+
+#: templates/wagtailpolls/choose.html:14 templates/wagtailpolls/index.html:33
+msgid "Search"
+msgstr ""
 
 #: templates/wagtailpolls/copy.html:3 templates/wagtailpolls/delete.html:3
 #: templates/wagtailpolls/edit.html:3 templates/wagtailpolls/index.html:3
@@ -74,6 +106,34 @@ msgstr "Sondage"
 msgid "Save"
 msgstr "Enregistrer"
 
+#: templates/wagtailpolls/copy.html:7 templates/wagtailpolls/poll_list.html:21
+msgid "Copy"
+msgstr ""
+
+#: templates/wagtailpolls/copy.html:13
+msgid "Are you sure you want to create a duplicate of this poll?"
+msgstr ""
+
+#: templates/wagtailpolls/copy.html:14
+msgid "Yes, create duplicate"
+msgstr ""
+
+#: templates/wagtailpolls/create.html:3
+msgid "New poll"
+msgstr ""
+
+#: templates/wagtailpolls/create.html:6
+msgid "New"
+msgstr ""
+
+#: templates/wagtailpolls/create.html:7
+msgid "Poll"
+msgstr ""
+
+#: templates/wagtailpolls/create.html:18
+msgid "Save"
+msgstr ""
+
 #: templates/wagtailpolls/delete.html:7
 #: templates/wagtailpolls/poll_list.html:22
 msgid "Delete"
@@ -107,10 +167,86 @@ msgstr "Ajouter un sondage"
 msgid "Polls: Viewing Results"
 msgstr "Sondages : Voir les résultats "
 
+#: templates/wagtailpolls/delete.html:13
+msgid "Are you sure you want to delete this poll?"
+msgstr ""
+
+#: templates/wagtailpolls/delete.html:14
+msgid "Yes, delete"
+msgstr ""
+
+#: templates/wagtailpolls/edit.html:7 templates/wagtailpolls/poll_list.html:20
+msgid "Edit"
+msgstr ""
+
+#: templates/wagtailpolls/edit.html:18
+msgid "Update"
+msgstr ""
+
+#: templates/wagtailpolls/edit.html:23
+msgid "Update and send"
+msgstr ""
+
+#: templates/wagtailpolls/index.html:39 templates/wagtailpolls/search.html:22
+msgid "Add poll"
+msgstr ""
+
+#: templates/wagtailpolls/index.html:47
+msgid "No polls yet!"
+msgstr ""
+
+#: templates/wagtailpolls/list.html:8 templates/wagtailpolls/results.html:8
+msgid "Title"
+msgstr ""
+
+#: templates/wagtailpolls/poll_list.html:6
+msgid "Name"
+msgstr ""
+
+#: templates/wagtailpolls/poll_list.html:7
+msgid "Date created"
+msgstr ""
+
+#: templates/wagtailpolls/poll_list.html:28
+msgid "ago"
+msgstr ""
+
+#: templates/wagtailpolls/poll_list.html:38
+msgid "Page"
+msgstr ""
+
+#: templates/wagtailpolls/poll_list.html:38
+msgid "of"
+msgstr ""
+
+#: templates/wagtailpolls/poll_list.html:44
+msgid "Previous"
+msgstr ""
+
+#: templates/wagtailpolls/poll_list.html:53
+msgid "Next"
+msgstr ""
+
+#: templates/wagtailpolls/poll_results.html:3
+msgid "Polls: Viewing Results"
+msgstr ""
+
 #: templates/wagtailpolls/poll_results.html:12
 #, python-format
 msgid "%(poll)s - Total Votes %(total_votes)s"
 msgstr "%(poll)s - Total des votes %(total_votes)s"
+
+#: templates/wagtailpolls/poll_results.html:22
+msgid "Question"
+msgstr ""
+
+#: templates/wagtailpolls/poll_results.html:23
+msgid "Votes"
+msgstr ""
+
+#: templates/wagtailpolls/search.html:30
+msgid "Your search results didn't return anything!"
+msgstr ""
 
 #: templates/wagtailpolls/search_results.html:5
 #, python-format
@@ -144,6 +280,10 @@ msgid ""
 msgstr ""
 "Aucun %(snippet_type_name_plural)s n'a été créé. Pourquoi ne pas en <a href="
 "\"%(wagtailsnippets_create_url)s\">ajouter un</a> ?"
+
+#: templates/wagtailpolls/vote_success.html:1
+msgid "You have successfully voted"
+msgstr ""
 
 #: views/chooser.py:71
 #, python-format
@@ -183,3 +323,42 @@ msgstr "Éditer un %(snippet_type_name)s"
 
 #~ msgid "Edit this %s"
 #~ msgstr "Éditer ce %s"
+
+#: views/editor.py:33
+msgid "The poll \"{0!s}\" has been added"
+msgstr ""
+
+#: views/editor.py:37
+msgid "The poll could not be created due to validation errors"
+msgstr ""
+
+#: views/editor.py:65
+msgid "The poll \"{0!s}\" has been updated"
+msgstr ""
+
+#: views/editor.py:69
+msgid "The poll could not be updated due to validation errors"
+msgstr ""
+
+#: views/vote.py:31
+msgid "Oops, there is no poll to vote on!"
+msgstr ""
+
+#: views/vote.py:56
+msgid "403 Forbidden"
+msgstr ""
+
+#: widgets.py:20
+#, python-format
+msgid "Choose %s"
+msgstr ""
+
+#: widgets.py:21
+#, python-format
+msgid "Choose another %s"
+msgstr ""
+
+#: widgets.py:22
+#, python-format
+msgid "Edit this %s"
+msgstr ""
