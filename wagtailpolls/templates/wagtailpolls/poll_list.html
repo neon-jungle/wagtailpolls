@@ -3,8 +3,8 @@
 <table class="listing full-width">
 			<colgroup>
 			<thead><tr class="table-headers">
-				<th class="title">Name</th>
-				<th class='created_on'>Date created</th>
+				<th class="title">{% blocktrans %}Name{% endblocktrans %}</th>
+				<th class='created_on'>{% blocktrans %}Date created{% endblocktrans %}</th>
 				<th class='results'></th>
 			</tr></thead>
 			<tbody>
@@ -25,7 +25,7 @@
 					<td class='created_on'>
 						{% if poll.date_created %}
 						<div class="human-readable-date" title="{{ poll.date_created|date:"d M Y H:i" }}">
-						{{ poll.date_created|timesince }} ago</div>{% endif %}
+						{{ poll.date_created|timesince }} {% blocktrans %}ago{% endblocktrans %}</div>{% endif %}
 					</td>
 					<td class='children'>
 						<a href="{% url 'wagtailpolls_results' poll_pk=poll.pk %}" class="icon icon-arrow-right" title="Check out the poll results for '{{poll}}'"><b>Results</b></a>
@@ -35,13 +35,13 @@
 			</tbody>
 </table>
 <div class="pagination">
-	<p>Page {{page.number}} of {{paginator.num_pages}}</p>
+	<p>{% blocktrans %}Page{% endblocktrans %} {{page.number}} {% blocktrans %}of{% endblocktrans %} {{paginator.num_pages}}</p>
 	<ul>
 		{% if page.has_previous %}
 		<li class="prev">
 
 
-					<a href="?{% querystring page=page.previous_page_number %}" class="icon icon-arrow-left">Previous</a>
+					<a href="?{% querystring page=page.previous_page_number %}" class="icon icon-arrow-left">{% blocktrans %}Previous{% endblocktrans %}</a>
 
 
 		</li>
@@ -50,7 +50,7 @@
 		<li class="next">
 
 
-					<a href="?{% querystring page=page.next_page_number %}" class="icon icon-arrow-right-after">Next</a>
+					<a href="?{% querystring page=page.next_page_number %}" class="icon icon-arrow-right-after">{% blocktrans %}Next{% endblocktrans %}</a>
 
 
 		</li>
