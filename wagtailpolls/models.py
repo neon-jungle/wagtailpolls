@@ -4,6 +4,7 @@ from six import text_type
 
 from django.db import models
 from django.utils.text import slugify
+from django.utils.translation import ugettext as _
 from django.db.models.query import QuerySet
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
@@ -36,7 +37,7 @@ class Vote(models.Model):
 @python_2_unicode_compatible
 class Question(ClusterableModel, models.Model):
     poll = ParentalKey('Poll', related_name='questions')
-    question = models.CharField(max_length=128)
+    question = models.CharField(max_length=128, verbose_name=_('Question'))
 
     def __str__(self):
         return self.question
@@ -44,12 +45,12 @@ class Question(ClusterableModel, models.Model):
 
 @python_2_unicode_compatible
 class Poll(ClusterableModel, models.Model, index.Indexed):
-    title = models.CharField(max_length=128)
+    title = models.CharField(max_length=128, verbose_name=_('Title'))
     date_created = models.DateTimeField(default=timezone.now)
 
     panels = [
         FieldPanel('title'),
-        InlinePanel('questions', label='Questions', min_num=1)
+        InlinePanel('questions', label=_('Questions'), min_num=1)
     ]
 
     search_fields = (

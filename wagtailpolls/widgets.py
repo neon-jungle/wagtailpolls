@@ -17,9 +17,12 @@ class AdminPollChooser(AdminChooser):
     def __init__(self, content_type=None, **kwargs):
         if 'snippet_type_name' in kwargs:
             snippet_type_name = kwargs.pop('snippet_type_name')
-            self.choose_one_text = _('Choose %s') % snippet_type_name
-            self.choose_another_text = _('Choose another %s') % snippet_type_name
-            self.link_to_chosen_text = _('Edit this %s') % snippet_type_name
+            self.choose_one_text = (_('Choose %(snippet_type_name)s') %
+                                    {'snippet_type_name': snippet_type_name})
+            self.choose_another_text = (_('Choose another %(snippet_type_name)s') %
+                                        {'snippet_type_name': snippet_type_name})
+            self.link_to_chosen_text = (_('Edit this %(snippet_type_name)s') %
+                                        {'snippet_type_name': snippet_type_name})
 
         super(AdminPollChooser, self).__init__(**kwargs)
         if content_type is not None:

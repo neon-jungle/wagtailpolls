@@ -1,0 +1,185 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-25 15:11+0200\n"
+"PO-Revision-Date: 2016-10-25 15:11+0200\n"
+"Last-Translator: François GUÉRIN <fguerin@ville-tourcoing.fr>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.8.10\n"
+
+#: models.py:40
+msgid "Question"
+msgstr "Question"
+
+#: models.py:48 templates/wagtailpolls/list.html:8
+#: templates/wagtailpolls/results.html:8
+msgid "Title"
+msgstr "Titre"
+
+#: models.py:53
+msgid "Questions"
+msgstr "Questions"
+
+#: templates/wagtailpolls/choose.html:2
+msgid "Choose a"
+msgstr "Choisir un"
+
+#: templates/wagtailpolls/choose.html:14
+msgid "Search"
+msgstr "Rechercher"
+
+#: templates/wagtailpolls/copy.html:3 templates/wagtailpolls/delete.html:3
+#: templates/wagtailpolls/edit.html:3 templates/wagtailpolls/index.html:3
+#: templates/wagtailpolls/index.html:29 templates/wagtailpolls/search.html:3
+#: templates/wagtailpolls/search.html:12 wagtail_hooks.py:22
+msgid "Polls"
+msgstr "Sondages"
+
+#: templates/wagtailpolls/copy.html:7 templates/wagtailpolls/poll_list.html:21
+msgid "Copy"
+msgstr "Copier"
+
+#: templates/wagtailpolls/copy.html:13
+msgid "Are you sure you want to create a duplicate of this poll?"
+msgstr "Êtes vous sur de vouloir créer une copie de ce sondage ?"
+
+#: templates/wagtailpolls/copy.html:14
+msgid "Yes, create duplicate"
+msgstr "Oui, créer une copie"
+
+#: templates/wagtailpolls/create.html:3
+msgid "New poll"
+msgstr "Nouveau sondage"
+
+#: templates/wagtailpolls/create.html:6
+msgid "New"
+msgstr "Nouveau"
+
+#: templates/wagtailpolls/create.html:7
+msgid "Poll"
+msgstr "Sondage"
+
+#: templates/wagtailpolls/create.html:18
+msgid "Save"
+msgstr "Enregistrer"
+
+#: templates/wagtailpolls/delete.html:7
+#: templates/wagtailpolls/poll_list.html:22
+msgid "Delete"
+msgstr "Supprimer"
+
+#: templates/wagtailpolls/delete.html:13
+msgid "Are you sure you want to delete this poll?"
+msgstr "Êtes vous sûr de supprimer ce sondage ?"
+
+#: templates/wagtailpolls/delete.html:14
+msgid "Yes, delete"
+msgstr "Oui, suprimer"
+
+#: templates/wagtailpolls/edit.html:7 templates/wagtailpolls/poll_list.html:20
+msgid "Edit"
+msgstr "Éditer"
+
+#: templates/wagtailpolls/edit.html:18
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: templates/wagtailpolls/edit.html:23
+msgid "Update and send"
+msgstr "Mettre à jour et envoyer"
+
+#: templates/wagtailpolls/index.html:39 templates/wagtailpolls/search.html:22
+msgid "Add poll"
+msgstr "Ajouter un sondage"
+
+#: templates/wagtailpolls/poll_results.html:3
+msgid "Polls: Viewing Results"
+msgstr "Sondages : Voir les résultats "
+
+#: templates/wagtailpolls/poll_results.html:12
+#, python-format
+msgid "%(poll)s - Total Votes %(total_votes)s"
+msgstr "%(poll)s - Total des votes %(total_votes)s"
+
+#: templates/wagtailpolls/search_results.html:5
+#, python-format
+msgid ""
+"\n"
+"\t\t\tThere is one match\n"
+"\t\t"
+msgid_plural ""
+"\n"
+"\t\t\tThere are %(counter)s matches\n"
+"\t\t"
+msgstr[0] ""
+"\n"
+"\t\t\tIl y a une correspondance\n"
+"\t\t"
+msgstr[1] ""
+"\n"
+"\t\t\tIl y a %(counter)s correspondances\n"
+"\t\t"
+
+#: templates/wagtailpolls/search_results.html:18
+#, python-format
+msgid "Sorry, no snippets match \"<em>%(query_string)s</em>\""
+msgstr "Désolé, aucune bride ne correspond à \"<em>%(query_string)s</em>\""
+
+#: templates/wagtailpolls/search_results.html:21
+#, python-format
+msgid ""
+"No %(snippet_type_name_plural)s have been created. Why not <a href="
+"\"%(wagtailsnippets_create_url)s\">add one</a>?"
+msgstr ""
+"Aucun %(snippet_type_name_plural)s n'a été créé. Pourquoi ne pas en <a href="
+"\"%(wagtailsnippets_create_url)s\">ajouter un</a> ?"
+
+#: views/chooser.py:71
+#, python-format
+msgid "Search %(snippet_type_name)s"
+msgstr "Rechercher un %(snippet_type_name)s"
+
+#: views/editor.py:33
+msgid "The poll \"{0!s}\" has been added"
+msgstr "Le sondage \"{0!s}\" a été ajouté"
+
+#: views/editor.py:37
+msgid "The poll could not be created due to validation errors"
+msgstr "Le sondage ne peut pas être créé, à cause d'une erreur de validation"
+
+#: views/editor.py:65
+msgid "The poll \"{0!s}\" has been updated"
+msgstr "Le sondage \"{0!s}\" a été mis à jour"
+
+#: views/editor.py:69
+msgid "The poll could not be updated due to validation errors"
+msgstr "Ce sondage ne peut être mise à jour à cause d'une erreur de validation"
+
+#: widgets.py:20
+#, python-format
+msgid "Choose %(snippet_type_name)s"
+msgstr "Choisir un %(snippet_type_name)s"
+
+#: widgets.py:21
+#, python-format
+msgid "Choose another %(snippet_type_name)s"
+msgstr "Choisir un autre %(snippet_type_name)s"
+
+#: widgets.py:22
+#, python-format
+msgid "Edit this %(snippet_type_name)s"
+msgstr "Éditer un %(snippet_type_name)s"
+
+#~ msgid "Edit this %s"
+#~ msgstr "Éditer ce %s"
