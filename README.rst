@@ -45,7 +45,7 @@ Then, in your editor, ensure that you have added some polls in the polls section
 
 Templating & Display
 ====================
-There are many ways in which you may want to display your poll. ``wagtailpolls`` comes with a template tag to assist with this, as well as certain attributes accesible via templating to render each question as a form. Here is an example using all of the tools provided:
+There are many ways in which you may want to display your poll. ``wagtailpolls`` comes with a template tag to assist with this, as well as certain attributes accessible via templating to render each question as a form. Here is an example using all of the tools provided:
 
 .. code-block:: html
 
@@ -94,8 +94,8 @@ Additionally, information will be added to the django session (basically cookies
 Settings
 ========
 
-The following settings **need** to be set in your ``settings.py`` file.
+The following settings can to be set in your ``settings.py`` file.
 
-``WAGTAILPOLLS_VOTE_COOLDOWN`` `This is to be an integer representing minutes`
+``WAGTAILPOLLS_VOTE_COOLDOWN`` `This is to be an integer representing minutes, the default is 10 minutes.`
 
 ``WAGTAILPOLLS_VOTE_REQUIRE_PERMS`` `A string or list of strings representing the permissions to vote, aka. 'wagtailadmin.access_admin'`
