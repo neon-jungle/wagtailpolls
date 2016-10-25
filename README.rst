@@ -87,7 +87,7 @@ The voting form also performs some validation. If the voting form is unable to o
 
     {"poll": "Test Poll", "total_questions": 3, "total_votes": 11, "votes": {"Yeah": 1, "Maybe": 0, "Nah": 10}, "form_error": {"__all__": ["Sorry, we were not able to obtain your ip address"]}}
 
-There is also a ``POLL_COOLDOWN`` which is set in your settings. This will only allow users on the same IP to vote at an interval of your choosing. If this is caught, the error will be present in the ``JsonResponse`` much like the error above.
+There is also a ``WAGTAILPOLLS_VOTE_COOLDOWN`` which is set in your settings. This will only allow users on the same IP to vote at an interval of your choosing. If this is caught, the error will be present in the ``JsonResponse`` much like the error above.
 
 Additionally, information will be added to the django session (basically cookies will be set) that will help make sure devices are not able to vote twice. When a vote is rejected due to this reason, the vote simply won't register with no error being returned in the ``JsonResponse``.
 
@@ -96,4 +96,6 @@ Settings
 
 The following settings **need** to be set in your ``settings.py`` file.
 
-``VOTE_COOLDOWN`` `This is to be an integer representing minutes`
+``WAGTAILPOLLS_VOTE_COOLDOWN`` `This is to be an integer representing minutes`
+
+``WAGTAILPOLLS_VOTE_REQUIRE_PERMS`` `A string or list of strings representing the permissions to vote, aka. 'wagtailadmin.access_admin'`

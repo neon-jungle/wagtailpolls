@@ -53,9 +53,7 @@ def _vote(request, poll_pk):
 
     else:
         data = vote_data(poll)
-        data.update({
-            'form_error': form.errors
-        })
+        data.update({'form_error': form.errors})
         return JsonResponse(data)
 
 
