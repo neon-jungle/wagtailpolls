@@ -11,7 +11,7 @@ from wagtail.wagtailadmin.widgets import AdminChooser
 class AdminPollChooser(AdminChooser):
     target_content_type = None
 
-    class Media():
+    class Media:
         js = ['js/poll_chooser.js']
 
     def __init__(self, content_type=None, **kwargs):

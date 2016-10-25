@@ -1,33 +1,39 @@
+from django.conf import settings
 from django.contrib.auth.decorators import permission_required
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse, Http404
 from django.shortcuts import get_object_or_404
 
-from ..forms import VoteForm
-from ..models import Poll, Vote
+from wagtailpolls.forms import VoteForm
+from wagtailpolls.models import Poll, Vote
 
 
 def vote_data(poll):
     questions = poll.questions.all()
     votes = Vote.objects.filter(question__poll=poll)
-    vote_data = {
+    _vote_data = {
         'poll': poll.title,
         'total_questions': questions.count(),
         'total_votes': votes.count(),
         'votes': {
             question.question: question.votes.count()
             for question in questions
-        }
+            }
     }
-    return vote_data
+    return _vote_data
 
 
-# @permission_required('wagtailadmin.access_admin')
-def vote(request, poll_pk):
+def _vote(request, poll_pk):
+    """
+    Performs the vote
+
+    :param request: http request
+    :param poll_pk: poll identifier
+    :returns: JSON response
+    """
     try:
         int(poll_pk)
-
     except ValueError:
-        return HttpResponse("<h1>Oops, there is no poll to vote on!</h1>", status=500)
+        raise Http404('Oops, there is no poll to vote on !')
 
     poll = get_object_or_404(Poll, pk=poll_pk)
 
@@ -49,7 +55,11 @@ def vote(request, poll_pk):
         data = vote_data(poll)
         data.update({
             'form_error': form.errors
-            })
+        })
         return JsonResponse(data)
 
-    return HttpResponse("<h1> 403 Forbidden</h1>", status=403)
+
+if getattr(settings, 'WAGTAILPOLLS_VOTE_REQUIRE_PERMS', None):
+    vote = permission_required(settings.POLLS_VOTE_REQUIRE_PERMS)(_vote)
+else:
+    vote = _vote

@@ -1,9 +1,12 @@
+import datetime
+
 from django import forms
-from .models import Vote
-from ipware.ip import get_real_ip, get_ip
 from django.conf import settings
 from django.utils import timezone
-import datetime
+from ipware.ip import get_real_ip, get_ip
+
+from .models import Vote
+
 
 # stop votes from an ip for 1 min after each vote
 
@@ -33,11 +36,12 @@ class VoteForm(forms.ModelForm):
 
     def clean(self):
         recent_vote = self.recent_vote()
+        cooldown = getattr(settings, 'WAGTAILPOLLS_VOTE_COOLDOWN', 10)
         if not self.ip:
             self.add_error(None, 'Sorry, we were not able to obtain your ip address')
         if recent_vote is not None:
-            if timezone.now() - recent_vote.time < datetime.timedelta(minutes=settings.VOTE_COOLDOWN):
-                self.add_error(None, 'Sorry, you cannot vote twice in %s minutes' % (settings.VOTE_COOLDOWN))
+            if timezone.now() - recent_vote.time < datetime.timedelta(minutes=cooldown):
+                self.add_error(None, 'Sorry, you cannot vote twice in %(cooldown)s minutes' % {'cooldown': cooldown})
 
     def save(self, commit=True):
         instance = super(VoteForm, self).save(commit=False)
