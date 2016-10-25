@@ -21,7 +21,7 @@ def vote_data(poll):
     return vote_data
 
 
-@permission_required('wagtailadmin.access_admin')
+# @permission_required('wagtailadmin.access_admin')
 def vote(request, poll_pk):
     try:
         int(poll_pk)
