@@ -24,18 +24,20 @@
 					</td>
 					<td class='created_on'>
 						{% if poll.date_created %}
-						<div class="human-readable-date" title="{{ poll.date_created|date:"d M Y H:i" }}">
-						{{ poll.date_created|timesince }} {% blocktrans %}ago{% endblocktrans %}</div>{% endif %}
+						<div class="human-readable-date" title="{{ poll.date_created|date:"SHORT_DATETIME_FORMAT"}}">
+						{% blocktrans with when=poll.date_created|timesince %}{{ when }} ago{% endblocktrans %}
+						</div>
+						{% endif %}
 					</td>
 					<td class='children'>
-						<a href="{% url 'wagtailpolls_results' poll_pk=poll.pk %}" class="icon icon-arrow-right" title="Check out the poll results for '{{poll}}'"><b>Results</b></a>
+						<a href="{% url 'wagtailpolls_results' poll_pk=poll.pk %}" class="icon icon-arrow-right" title="{% trans "Check out the poll results for '{{poll}}'" %}"><b>{% blocktrans %}Results{% endblocktrans %}</b></a>
 					</td>
 				</tr>
 			{% endfor %}
 			</tbody>
 </table>
 <div class="pagination">
-	<p>{% blocktrans %}Page{% endblocktrans %} {{page.number}} {% blocktrans %}of{% endblocktrans %} {{paginator.num_pages}}</p>
+	<p>{% blocktrans with number=page.number total=paginator.num_pages %}Page {{ number }} of {{ total }}{% endblocktrans %}</p>
 	<ul>
 		{% if page.has_previous %}
 		<li class="prev">

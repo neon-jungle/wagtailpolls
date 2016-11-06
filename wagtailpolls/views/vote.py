@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.decorators import permission_required
-from django.http import HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from wagtailpolls.forms import VoteForm
@@ -33,7 +33,7 @@ def _vote(request, poll_pk):
     try:
         int(poll_pk)
     except ValueError:
-        return HttpResponse("<h1>{0}</h1>".format(_('Oops, there is no poll to vote on!')), status=500)
+        raise Http404("<h1>{0}</h1>".format('Oops, there is no poll to vote on!'))
 
     poll = get_object_or_404(Poll, pk=poll_pk)
 

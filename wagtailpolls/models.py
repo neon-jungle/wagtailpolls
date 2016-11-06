@@ -33,6 +33,10 @@ class Vote(models.Model):
     def __str__(self):
         return self.question.question
 
+    class Meta:
+        verbose_name = _('vote')
+        verbose_name_plural = _('votes')
+
 
 @python_2_unicode_compatible
 class Question(ClusterableModel, models.Model):
@@ -42,11 +46,19 @@ class Question(ClusterableModel, models.Model):
     def __str__(self):
         return self.question
 
+    class Meta:
+        verbose_name = _('question')
+        verbose_name_plural = _('questions')
+
 
 @python_2_unicode_compatible
 class Poll(ClusterableModel, models.Model, index.Indexed):
     title = models.CharField(max_length=128, verbose_name=_('Title'))
     date_created = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name = _('poll')
+        verbose_name_plural = _('polls')
 
     panels = [
         FieldPanel('title'),
