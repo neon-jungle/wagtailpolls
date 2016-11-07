@@ -27,6 +27,6 @@
 	{% if poll_list.exists %}
 	{% include 'wagtailpolls/poll_list.html' %}
 	{% else %}
-        <div class="nice-padding">Your search results didn't return anything!</div>
+        <div class="nice-padding">{% blocktrans %}Your search results didn't return anything!{% endblocktrans %}</div>
 	{% endif %}
 {% endblock %}

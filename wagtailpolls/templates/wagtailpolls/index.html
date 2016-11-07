@@ -30,7 +30,7 @@
 				</div>
 				<form class='col search-form' action='{% url 'wagtailpolls_search' %}' method="GET">
 				{{search_form}}
-				<li class="submit visuallyhidden"><input type="submit" value="Search" class="button"></li>
+				<li class="submit visuallyhidden"><input type="submit" value="{% trans 'Search' %}" class="button"></li>
 				</form>
 			</div>
 
@@ -44,6 +44,6 @@
 	{% if poll_list.exists %}
 	{% include 'wagtailpolls/poll_list.html' %}
 	{% else %}
-		<div class="nice-padding">No polls yet!</div>
+		<div class="nice-padding">{% blocktrans %}No polls yet!{% endblocktrans %}</div>
 	{% endif %}
 {% endblock %}

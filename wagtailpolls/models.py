@@ -3,16 +3,16 @@ from __future__ import absolute_import, unicode_literals
 from six import text_type
 
 from django.db import models
-from django.utils.text import slugify
-from django.utils.translation import ugettext as _
 from django.db.models.query import QuerySet
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
-from wagtail.wagtailsearch.backends import get_search_backend
+from django.utils.text import slugify
+from django.utils.translation import ugettext_lazy as _
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.wagtailsearch import index
+from wagtail.wagtailsearch.backends import get_search_backend
 
 
 class PollQuerySet(QuerySet):
@@ -33,6 +33,10 @@ class Vote(models.Model):
     def __str__(self):
         return self.question.question
 
+    class Meta:
+        verbose_name = _('vote')
+        verbose_name_plural = _('votes')
+
 
 @python_2_unicode_compatible
 class Question(ClusterableModel, models.Model):
@@ -42,11 +46,19 @@ class Question(ClusterableModel, models.Model):
     def __str__(self):
         return self.question
 
+    class Meta:
+        verbose_name = _('question')
+        verbose_name_plural = _('questions')
+
 
 @python_2_unicode_compatible
 class Poll(ClusterableModel, models.Model, index.Indexed):
     title = models.CharField(max_length=128, verbose_name=_('Title'))
     date_created = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name = _('poll')
+        verbose_name_plural = _('polls')
 
     panels = [
         FieldPanel('title'),
@@ -70,11 +82,9 @@ class Poll(ClusterableModel, models.Model, index.Indexed):
             return '{0}/{1}.html'.format(self._meta.app_label, self._meta.model_name)
 
     def form(self):
+        # Stops circular import
+        from .forms import VoteForm
         return VoteForm(self)
 
     def __str__(self):
         return self.title
-
-
-# Stops circular import
-from .forms import VoteForm
