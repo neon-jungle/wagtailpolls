@@ -2,7 +2,15 @@ from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage
 
 
-def paginate(request, items, per_page=settings.DEFAULT_PER_PAGE,
+def get_per_page():
+    if hasattr(settings, 'DEFAULT_PER_PAGE'):
+        per_page = settings.DEFAULT_PER_PAGE
+    else:
+        per_page = 12
+    return per_page
+
+
+def paginate(request, items, per_page=get_per_page(),
              page_key='page'):
     paginator = Paginator(items, per_page)
 
