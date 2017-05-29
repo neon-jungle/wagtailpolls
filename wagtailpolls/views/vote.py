@@ -17,7 +17,7 @@ def vote_data(poll):
         'votes': {
             question.question: question.votes.count()
             for question in questions
-            }
+        }
     }
     return _vote_data
 
