@@ -15,7 +15,10 @@
 			<ul>
 				<li class="actions">
 					<div class="dropdown dropup dropdown-button match-width">
-							<button class='button' type="submit"> {% trans 'Update' %} </button>
+							<button class='button button button-longrunning' data-clicked-text="{% trans 'Updating...' %}" type="submit">
+							<span class="icon icon-spinner"></span>
+							<em>{% trans 'Update' %}</em>
+							</button>
 					</div>
 				</li>
 			</ul>
