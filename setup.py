@@ -25,7 +25,7 @@ setup(
     url='https://github.com/takeflight/wagtailpolls',
 
     install_requires=[
-        'wagtail>=1.2',
+        'wagtail>=1.3',
         'django-ipware==1.1.2',
     ],
     zip_safe=False,
