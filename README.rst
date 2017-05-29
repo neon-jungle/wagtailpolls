@@ -11,7 +11,7 @@ Install using pip::
 
     pip install wagtailpolls
 
-It works with Wagtail 1.0b2 and upwards.
+It works with Wagtail 1.2 and upwards.
 
 Using
 =====
