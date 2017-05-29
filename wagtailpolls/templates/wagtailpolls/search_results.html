@@ -12,12 +12,12 @@
 
 	{% include "wagtailpolls/list.html" %}
 
-	{% include "wagtailadmin/shared/pagination_nav.html" with items=items is_searching=is_searching linkurl=wagtailsnippets_list_url %}
+	{% include "wagtailadmin/shared/pagination_nav.html" with items=items is_searching=is_searching %}
 {% else %}
 	{% if is_searching %}
-		 <p>{% blocktrans %}Sorry, no snippets match "<em>{{ query_string }}</em>"{% endblocktrans %}</p>
+		 <p>{% blocktrans %}Sorry, no polls match "<em>{{ query_string }}</em>"{% endblocktrans %}</p>
 	{% else %}
-		{% url 'wagtailsnippets:add' content_type.app_label content_type.model as wagtailsnippets_create_url %}
-		<p class="no-results-message">{% blocktrans %}No {{ snippet_type_name_plural }} have been created. Why not <a href="{{ wagtailsnippets_create_url }}">add one</a>?{% endblocktrans %}</p>
+		{% url 'wagtailpolls_create' as wagtailpolls_create_url %}
+		<p class="no-results-message">{% blocktrans %}No polls have been created. Why not <a href="{{ wagtailpolls_create_url }}">add one</a>?{% endblocktrans %}</p>
 	{% endif %}
 {% endif %}

@@ -93,6 +93,7 @@ def delete(request, poll_pk):
         'poll': poll,
     })
 
+
 @permission_required('wagtailadmin.access_admin')  # further permissions are enforced within the view
 def copy(request, poll_pk):
     from ..models import Poll

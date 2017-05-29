@@ -9,12 +9,12 @@
 	<div class="row row-flush">
 			<div class="left col9">
 				<div class='col'>
-				<h1 class="icon icon-edit">{% blocktrans %}Polls{% endblocktrans %} </h1>
+				<h1 class="icon icon-edit">{% blocktrans %}Poll{% endblocktrans %} </h1>
 				</div>
 				<form class='col search-form' action='{% url 'wagtailpolls_search' %}' method="GET">
 				{{search_form}}
-				<li class="submit visuallyhidden"><input type="submit" value="Search" class="button"></li>
-				</form>
+				<li class="submit"><button class="button" type="submit">Search</button></li>
+			</form>
 			</div>
 
 		<div class='right col3'>

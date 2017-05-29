@@ -1,4 +1,5 @@
 {% load i18n %}
+{% if items %}
 <table class="listing">
     <col />
     <col  />
@@ -22,3 +23,7 @@
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+{% url 'wagtailpolls_create' as wagtailpolls_create_url %}
+<p class="no-results-message">{% blocktrans %}No polls have been created. Why not <a href="{{ wagtailpolls_create_url }}">add one</a>?{% endblocktrans %}</p>
+{% endif %}
